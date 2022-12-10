@@ -36,7 +36,7 @@ const Home = () => {
             <h1>crypto twitter thread generator</h1>
           </div>
           <div className="header-subtitle">
-            <h2>Enter the topic (ex. Ethereum and it’s price, Bitcoin and it’s longevity).</h2>
+            <h2>Enter the topic (eg. Ethereum, ENS, Bitcoin, etc.).</h2>
           </div>
         </div>
         <div className="prompt-container">
