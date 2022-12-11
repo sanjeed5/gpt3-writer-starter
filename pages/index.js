@@ -28,6 +28,26 @@ const Home = () => {
     setIsGenerating(false);
   }
 
+  const callGenerateIdeasEndpoint = async () => {
+    setIsGenerating(true);
+
+    console.log("Calling OpenAI...")
+    const response = await fetch('/api/generateideas', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(""),
+    });
+
+    const data = await response.json();
+    const { output } = data;
+    console.log("OpenAI replied...", output.text)
+
+    setApiOutput(`${output.text}`);
+    setIsGenerating(false);
+  }
+
   return (
     <div className="root">
       <div className="container">
@@ -36,8 +56,15 @@ const Home = () => {
             <h1>crypto twitter thread generator</h1>
           </div>
           <div className="header-subtitle">
-            <h2>Enter the topic (eg. Ethereum, ENS, Bitcoin, etc.).</h2>
+            <h2>
+              Enter a topic to write the thread on (ex. Ethereum, Bitcoin, ENS, etc.).
+              <br/><br/> 
+              <a className='' onClick={callGenerateIdeasEndpoint}>
+                 Click here to generate some topic ideas.
+              </a>
+            </h2>
           </div>
+          
         </div>
         <div className="prompt-container">
           <textarea
